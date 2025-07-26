@@ -1,19 +1,13 @@
 from flask import Flask
-from config import Config
-from flask_mail import Mail
-
-mail = Mail()
 
 def create_app():
     app = Flask(__name__)
-    app.config.from_object(Config)
+    # Load config, init extensions here if any
 
-    mail.init_app(app)
+    from app.main import main as main_blueprint
+    app.register_blueprint(main_blueprint)
 
-    from app.main.routes import main
-    from app.orders.routes import orders
-
-    app.register_blueprint(main)
-    app.register_blueprint(orders, url_prefix='/orders')
+    from app.orders import orders as orders_blueprint
+    app.register_blueprint(orders_blueprint, url_prefix='/orders')
 
     return app
