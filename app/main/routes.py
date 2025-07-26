@@ -3,7 +3,7 @@ from app.main import main  # Import the blueprint object defined above
 @main.route('/')
 def home():
     return "Hello from the main blueprint"
- flask import render_template, request, redirect, url_for, flash
+ from flask import render_template, request, redirect, url_for, flash
 from app.orders import orders
 #import stripe  # Uncomment and configure if integrating real payments
 
